@@ -135,12 +135,7 @@ bw sync >/dev/null
 # get bitwarden items
 BITWARDEN_FOLDER="nebula/hosts/${HOSTNAME}"
 BITWARDEN_FOLDERS=$(bw list folders)
-echo "bitwarden BITWARDEN_FOLDERS"
-echo "${BITWARDEN_FOLDERS}"
 BITWARDEN_FOLDER_ID=$(echo "$BITWARDEN_FOLDERS" | jq -r --arg folder "$BITWARDEN_FOLDER" '.[] | select(.name == $folder) | .id')
-echo "BITWARDEN_FOLDER_ID"
-echo "${BITWARDEN_FOLDER_ID}"
-exit 0
 
 # iterate secure notes
 while IFS=$'\t' read -r ITEM_NAME ITEM_VALUE; do
