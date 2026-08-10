@@ -174,7 +174,7 @@ echo "config.yaml"
 echo "${NEBULA_CONFIG_YAML}"
 echo ""
 echo "nebula.service"
-echo ""
+echo "${NEBULA_SERVICE}"
 exit 0
 
 # connect to nebula
