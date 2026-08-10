@@ -14,6 +14,11 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+#TODO not tested on macos
+#TODO not tested on alma linux
+#TODO not tested on arch linux
+#TODO not tested on ubuntu
+
 # determine operating system
 if [[ "$(uname -s)" == "Darwin" ]]; then
     echo "Running on macOS."
@@ -176,6 +181,8 @@ echo ""
 echo "nebula.service"
 echo "${NEBULA_SERVICE}"
 exit 0
+
+#TODO tested to here for nebula
 
 # connect to nebula
 if [[ "${OS_CLASS}" == "macos" ]]; then
