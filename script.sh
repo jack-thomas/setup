@@ -134,7 +134,11 @@ bw sync >/dev/null
 
 # get bitwarden items
 BITWARDEN_FOLDER="nebula/hosts/${HOSTNAME}"
-BITWARDEN_FOLDER_ID=$(bw list folders | jq --arg folder "$BITWARDEN_FOLDER" '.[] | select(.name == $folder) | .id')
+BITWARDEN_FOLDERS=$(bw list folders)
+echo "bitwarden BITWARDEN_FOLDERS"
+echo "${BITWARDEN_FOLDERS}"
+BITWARDEN_FOLDER_ID=$(echo "$BITWARDEN_FOLDERS" | jq --arg folder "$BITWARDEN_FOLDER" '.[] | select(.name == $folder) | .id')
+echo "BITWARDEN_FOLDER_ID"
 echo "${BITWARDEN_FOLDER_ID}"
 exit 0
 
