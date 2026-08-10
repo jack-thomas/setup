@@ -134,21 +134,9 @@ bw sync >/dev/null
 
 # get bitwarden items
 BITWARDEN_FOLDER="nebula/hosts/${HOSTNAME}"
-BITWARDEN_FOLDER_ID="$(
-    bw list folders \
-    | jq -er --arg name "$BITWARDEN_FOLDER" '
-        [
-            .[]
-            | select(.name == $name)
-        ]
-        | if length == 1 then .[0].id
-          elif length == 0 then
-              error("Error: Unable to find file with name: " + $name)
-          else
-              error("Error: Multiple folders found with name: " + $name)
-          end
-    '
-)"
+BITWARDEN_FOLDER_ID=$(bw list folders) | jq ".[] | select(.name == ${BITWARDEN_FOLDER} | .['id']"
+echo "${BITWARDEN_FOLDER_ID}"
+exit 0
 
 # iterate secure notes
 while IFS=$'\t' read -r ITEM_NAME ITEM_VALUE; do
