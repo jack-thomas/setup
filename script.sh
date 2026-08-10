@@ -97,7 +97,7 @@ elif [[ "${OS_CLASS}" == "linux" ]]; then
             git \
             nebula
     elif [[ "${OS_DISTRO}" == "nixos" ]]; then
-        nix --extra-experimental-features 'nix-command flakes' profile install \
+        nix --extra-experimental-features 'nix-command flakes' profile add \
             nixpkgs#bitwarden-cli \
             nixpkgs#git \
             nixpkgs#nebula

@@ -1,5 +1,9 @@
 # Setup Script
 
 ```sh
-curl -ssL https://raw.githubusercontent.com/jack-thomas/setup/refs/heads/main/script.sh | sudo sh
+mkdir -p "${HOME}/git"
+cd "${HOME}/git"
+git clone https://github.com/jack-thomas/setup.git
+cd ./setup
+sudo ./script.sh
 ```
