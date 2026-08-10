@@ -110,7 +110,7 @@ fi
 
 # ask for hostname
 read -rp "Hostname: " HOSTNAME
-git_repo = "https://git.withjt.net/devices/${HOSTNAME}.git"
+git_repo="https://git.withjt.net/devices/${HOSTNAME}.git"
 sudo hostnamectl set-hostname ${HOSTNAME}
 
 # connect to bitwarden
