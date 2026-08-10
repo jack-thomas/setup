@@ -111,7 +111,9 @@ fi
 # ask for hostname
 read -rp "Hostname: " HOSTNAME
 git_repo="https://git.withjt.net/devices/${HOSTNAME}.git"
-sudo hostnamectl set-hostname ${HOSTNAME}
+if [[ "${OS_DISTRO}" != "nixos" ]]; then
+    sudo hostnamectl set-hostname ${HOSTNAME}
+fi
 
 # connect to bitwarden
 read -rp "Bitwarden email: " BW_EMAIL # ask for bitwarden email address
@@ -254,6 +256,6 @@ if ! git ls-remote "$REPO_URL" >/dev/null 2>&1; then
 fi
 
 # download and execute further instructions
-mkdir -p "${HOME}/git"
+mkdir -p "${HOME}/git/${HOSTNAME}"
 git -C "${HOME}/git/${HOSTNAME}" clone "${git_repo}"
 sh "${HOME}/git/${HOSTNAME}/install.sh"
