@@ -102,9 +102,9 @@ elif [[ "${OS_CLASS}" == "linux" ]]; then
             nixpkgs#git \
             nixpkgs#nebula
     elif [[ "${OS_DISTRO}" == "ubuntu" ]]; then
-        #TODO install git
-        #TODO install bitwarden-cli
-        #TODO install nebula
+        echo "#TODO install git"
+        echo "#TODO install bitwarden-cli"
+        echo "#TODO install nebula"
     fi
 fi
 
