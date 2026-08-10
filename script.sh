@@ -133,7 +133,7 @@ trap cleanup_bitwarden EXIT INT TERM
 bw sync >/dev/null
 
 # get bitwarden items
-BITWARDEN_FOLDER="/nebula/hosts/${HOSTNAME}"
+BITWARDEN_FOLDER="nebula/hosts/${HOSTNAME}"
 BITWARDEN_FOLDER_ID="$(
     bw list folders \
     | jq -er --arg name "$BITWARDEN_FOLDER" '
