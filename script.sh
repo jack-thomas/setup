@@ -257,5 +257,5 @@ fi
 
 # download and execute further instructions
 mkdir -p "${HOME}/git/${HOSTNAME}"
-git -C "${HOME}/git/${HOSTNAME}" clone "${git_repo}"
+git -C "${HOME}/git/" clone "${git_repo}"
 sh "${HOME}/git/${HOSTNAME}/install.sh"
