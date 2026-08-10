@@ -181,6 +181,13 @@ if [[ "${OS_CLASS}" == "linux" && "${NEBULA_SERVICE}" == "" ]]; then
     echo "Error: Unable to find nebula.service in Bitwarden folder."
 fi
 
+echo "config.yaml"
+echo "${NEBULA_CONFIG_YAML}"
+echo ""
+echo "nebula.service"
+echo ""
+exit 0
+
 # connect to nebula
 if [[ "${OS_CLASS}" == "macos" ]]; then
     sudo brew services stop nebula
