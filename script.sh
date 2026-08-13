@@ -33,7 +33,6 @@ nix --extra-experimental-features 'nix-command flakes' profile add \
 
 # ask for hostname
 read -rp "Hostname: " HOSTNAME
-REPO_URL="https://git.withjt.net/devices/${HOSTNAME}.git"
 
 # connect to bitwarden
 read -rp "Bitwarden email: " BW_EMAIL # ask for bitwarden email address
@@ -117,6 +116,7 @@ if ! git ls-remote "$REPO_URL" >/dev/null 2>&1; then
 fi
 
 # download and execute further instructions
+REPO_URL="https://git.withjt.net/jack-thomas/nixos.git"
 mkdir -p "${HOME}/git"
 git -C "${HOME}/git" clone "${REPO_URL}"
 sh "${HOME}/git/${HOSTNAME}/install.sh"
