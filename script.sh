@@ -109,12 +109,6 @@ else
     echo "Successfully pinged git.withjt.net"
 fi
 
-# validate that the repo exists (indicating that the hostname is valid)
-if ! git ls-remote "$REPO_URL" >/dev/null 2>&1; then
-    echo "Error: Repository does not exist or is not accessible: $REPO_URL" >&2
-    exit 1
-fi
-
 # download and execute further instructions
 REPO_URL="https://git.withjt.net/jack-thomas/nixos.git"
 mkdir -p "${HOME}/git"
