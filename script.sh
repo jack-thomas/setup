@@ -85,7 +85,7 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM # this should override the other trap #TODO but test that assumption
 ## start nebula
-sudo nebula -config "$NEBULA_CONFIG" &
+sudo nebula -config "${HOME}/config.yaml" &
 NEBULA_PID=$!
 ## wait briefly for nebula to initialize
 sleep 2
