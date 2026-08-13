@@ -119,4 +119,4 @@ fi
 REPO_URL="https://git.withjt.net/jack-thomas/nixos.git"
 mkdir -p "${HOME}/git"
 git -C "${HOME}/git" clone "${REPO_URL}"
-sh "${HOME}/git/${HOSTNAME}/install.sh"
+sh "${HOME}/git/nixos/install/01_pre_reboot.sh"
