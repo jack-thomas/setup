@@ -34,9 +34,6 @@ nix --extra-experimental-features 'nix-command flakes' profile add \
 # ask for hostname
 read -rp "Hostname: " HOSTNAME
 git_repo="https://git.withjt.net/devices/${HOSTNAME}.git"
-if [[ "${OS_DISTRO}" != "nixos" ]]; then
-    sudo hostnamectl set-hostname ${HOSTNAME}
-fi
 
 # connect to bitwarden
 read -rp "Bitwarden email: " BW_EMAIL # ask for bitwarden email address
