@@ -9,8 +9,7 @@ set -euo pipefail
 
 # check if running as root or with sudo
 if [[ $EUID -ne 0 ]]; then
-   echo "Error: This script must be run as root or with sudo. Try this:"
-   echo "curl -ssL https://raw.githubusercontent.com/jack-thomas/setup/refs/heads/master/script.sh | sudo sh"
+   echo "Error: This script must be run as root or with sudo."
    exit 1
 fi
 
@@ -168,8 +167,12 @@ if [[ "${NEBULA_CONFIG_YAML}" == "" ]]; then
     echo "Error: Unable to find config.yaml in Bitwarden folder."
 fi
 
+# write to file
+echo "${NEBULA_CONFIG_YAML}" > "${HOME}/config.yaml"
+
+# validate
 echo "config.yaml"
-echo "${NEBULA_CONFIG_YAML}"
+cat "${HOME}/config.yaml"
 echo ""
 exit 0
 
