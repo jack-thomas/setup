@@ -151,9 +151,6 @@ while IFS=$'\t' read -r ITEM_NAME ITEM_VALUE; do
     if [[ "${ITEM_NAME}" == "config.yaml" ]]; then
         NEBULA_CONFIG_YAML="${ITEM_VALUE}"
         echo "Found config.yaml."
-    elif [[ "${ITEM_NAME}" == "nebula.service" ]]; then
-        NEBULA_SERVICE="${ITEM_VALUE}"
-        echo "Found nebula.service."
     fi
 done < <(
     bw list items \
@@ -170,16 +167,10 @@ if [[ "${NEBULA_CONFIG_YAML}" == "" ]]; then
     # assume (though we may change this later) that certs are embedded in config
     echo "Error: Unable to find config.yaml in Bitwarden folder."
 fi
-if [[ "${OS_CLASS}" == "linux" && "${NEBULA_SERVICE}" == "" ]]; then
-    # not required for macos
-    echo "Error: Unable to find nebula.service in Bitwarden folder."
-fi
 
 echo "config.yaml"
 echo "${NEBULA_CONFIG_YAML}"
 echo ""
-echo "nebula.service"
-echo "${NEBULA_SERVICE}"
 exit 0
 
 #TODO tested to here for nebula
