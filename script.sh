@@ -141,34 +141,22 @@ BITWARDEN_FOLDER="nebula/hosts/${HOSTNAME}"
 BITWARDEN_FOLDERS=$(bw list folders)
 BITWARDEN_FOLDER_ID=$(echo "$BITWARDEN_FOLDERS" | jq -r --arg folder "$BITWARDEN_FOLDER" '.[] | select(.name == $folder) | .id')
 
-# iterate secure notes
-while IFS=$'\t' read -r ITEM_NAME ITEM_VALUE; do
-    if [[ -z "$ITEM_VALUE" ]]; then
-        echo "Error: Secure Note '$ITEM_NAME' has no contents" >&2
-        exit 1
-    fi
-    if [[ "${ITEM_NAME}" == "config.yaml" ]]; then
-        NEBULA_CONFIG_YAML="${ITEM_VALUE}"
-        echo "Found config.yaml."
-    fi
-done < <(
-    bw list items \
-    | jq -r --arg folder_id "$BITWARDEN_FOLDER_ID" '
-        .[]
-        | select(.folderId == $folder_id and .type == 2)
-        | [.name, (.notes // "")]
-        | @tsv
-    '
+# get config
+NEBULA_CONFIG_YAML=$(
+    bw list items |
+        jq -er --arg folder_id "$BITWARDEN_FOLDER_ID" '
+            .[]
+            | select(.folderId == $folder_id and .type == 2 and .name == "config.yaml")
+            | .notes // empty
+        '
 )
-
-# double check that we found everything
-if [[ "${NEBULA_CONFIG_YAML}" == "" ]]; then
-    # assume (though we may change this later) that certs are embedded in config
-    echo "Error: Unable to find config.yaml in Bitwarden folder."
+if [[ -z "$NEBULA_CONFIG_YAML" ]]; then
+    echo "Error: Unable to find config.yaml in Bitwarden folder." >&2
+    exit 1
 fi
 
 # write to file
-echo "${NEBULA_CONFIG_YAML}" > "${HOME}/config.yaml"
+printf '%s\n' "$NEBULA_CONFIG_YAML" > "${HOME}/config.yaml"
 
 # validate
 echo "config.yaml"
