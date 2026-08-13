@@ -110,11 +110,6 @@ else
     echo "Successfully pinged git.withjt.net"
 fi
 
-# validate
-exit 0
-
-#TODO tested to here
-
 # validate that the repo exists (indicating that the hostname is valid)
 if ! git ls-remote "$REPO_URL" >/dev/null 2>&1; then
     echo "Error: Repository does not exist or is not accessible: $REPO_URL" >&2
@@ -122,6 +117,6 @@ if ! git ls-remote "$REPO_URL" >/dev/null 2>&1; then
 fi
 
 # download and execute further instructions
-mkdir -p "${HOME}/git/${HOSTNAME}"
-git -C "${HOME}/git/" clone "${git_repo}"
+mkdir -p "${HOME}/git"
+git -C "${HOME}/git" clone "${git_repo}"
 sh "${HOME}/git/${HOSTNAME}/install.sh"
